@@ -15,6 +15,6 @@ int main() {
 
     printf("Array index of interest:\n%d.\n", i);
     printf("Array starts at address:\n%ld.\n", start);
-    printf("array index 4 starts at address:\n%ld.\n", start + (i * sizeof(a[i])));
+    printf("array index 4 starts at address:\n%ld.\n", start + i * sizeof(a[i]));
     printf("Difference / sizeof each array element:\n %ld\n", diff/i);
 }
