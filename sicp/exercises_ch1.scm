@@ -39,9 +39,8 @@
 ;
 ;
 ; Answer:
-; In an applicative evaluation model, (test 0 (p)) returns 0 because test's local x binding is 0, so y is never examined.  
-; In a normative applicative evaluation model, it will never return, because p is a non-terminating recursive function, and this model
-; evaluates the arguments before applying the operators to them.
+; In an applicative evaluation model, (test 0 (p)) never finishes because p is evaluated in every case, regardless of the value of x.  
+; In a normal-order evaluation model, it will return 0 because x is 0. Y will never get evaluated.
 
-
-
+; Why does writing a 'new-if' function in terms of 'cond' pose a problem when calculating square roots recursively via Netwon's method?
+; Answer: the standard 'if' is normal-order evaluation, and only ever evaluates one of its operands, but 'cond', which is applicative order, evaluates them all, so the recursive call will be evaluated in every case.
