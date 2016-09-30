@@ -2,7 +2,7 @@
 #include <stdlib.h>
 
 struct Node {
-    int data;           // x is valid if x >= 0
+    int data; // x is valid if x >= 0
     struct Node * next; 
 };
 
