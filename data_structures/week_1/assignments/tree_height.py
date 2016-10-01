@@ -28,10 +28,14 @@ def tree_height():
 
 def main():
 
+    # use the starter file approach but cache i/height values
     N = raw_input()
     parents = [ int(n) 
                 for n 
                 in raw_input().split() ]
+    tree = {
+        children: []
+    }
 
 if __name__ == '__main__':
     main()
