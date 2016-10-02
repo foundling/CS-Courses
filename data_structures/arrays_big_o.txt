@@ -1,5 +1,0 @@
-# Big-O for Arrays
-
-read / write: O(1), constant
-add / remove at end: O(1), constant
-add /remove at arbitrary locations: O(n), linear 

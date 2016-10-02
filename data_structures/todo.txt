@@ -1,1 +1,0 @@
-finish linked-list functions, finish stack functions.
