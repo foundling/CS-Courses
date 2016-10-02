@@ -1,38 +1,53 @@
 # python 2
+
 '''
-Michael Levin - If you just build the tree from the input provided and then implement a recursive function to find height almost the same way it was described in the lectures for binary trees, you will solve the problem, and the solution will be fast, O(n).
+Alex Ramsdell
+Coursera Data Structures
+Week 1 Programming Assignment, Problem #2 Compute Tree Height
+
+Input: first line, N, number of vertices in the tree. Second line, a space-delimited list of integers, L, 
+from L[0] to L[n-1], where the index represents a node, and the value at that index represents the node's parent index.
+If the value at the index is -1, that represents the root node.
+
+Output: tree height
+
+Status: Complete, verified 'Good job! (Max time used: 0.54/3.00, max memory used: 117972992/536870912.)'
+
 '''
 
 import sys, threading
-sys.setrecursionlimit(10**7) 
-threading.stack_size(2**27)  
+sys.setrecursionlimit(10**7) # max depth of recursion
+threading.stack_size(2**27)  # new thread will get stack of such size
 
-def tree_height(n, parents):
+def build_tree(parents, n):
 
-    maxHeight = 0
-    cache = {}
+    tree = {}
+    key = None
+    for i in range(n):
+        key = parents[i]
+        if key in tree:
+            tree[key].append(i)
+        else:
+            tree[key] = [i]
+    return tree
 
-    for vertex in range(int(n)):
-        height = 0
-        i = vertex
-        while i != -1:
-            if parents[i] in cache:
-                height += cache[ parents[i] ] + 1
-                break
-            else:
-                height += 1
-                cache[ parents[i] ] = height
-                i = parents[i]
-        maxHeight = max(maxHeight, height);
+def tree_height(tree, key):
 
-    print cache
-    return maxHeight;
+    if key not in tree:
+        return 0
+    else:
+        children = tree[key]
+        return 1 + max([tree_height(tree, c) for c in children])
 
 def main():
+
     n = int(raw_input().strip())
     parents = [ int(num) 
                 for num 
                 in raw_input().split() ]
-    print tree_height(n, parents)
+    tree = build_tree(parents, n)
+    root_key = -1
+    height = tree_height(tree, root_key)
+    print height
 
 threading.Thread(target=main).start()
