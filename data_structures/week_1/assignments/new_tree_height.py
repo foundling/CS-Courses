@@ -11,6 +11,8 @@ If the value at the index is -1, that represents the root node.
 
 Output: tree height
 
+Status: Complete, verified 'Good job! (Max time used: 0.54/3.00, max memory used: 117972992/536870912.)'
+
 '''
 
 import sys, threading
