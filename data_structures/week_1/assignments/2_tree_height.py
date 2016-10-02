@@ -15,10 +15,6 @@ Status: Complete, verified 'Good job! (Max time used: 0.54/3.00, max memory used
 
 '''
 
-import sys, threading
-sys.setrecursionlimit(10**7) # max depth of recursion
-threading.stack_size(2**27)  # new thread will get stack of such size
-
 def build_tree(parents, n):
 
     tree = {}
@@ -49,5 +45,3 @@ def main():
     root_key = -1
     height = tree_height(tree, root_key)
     print height
-
-threading.Thread(target=main).start()
