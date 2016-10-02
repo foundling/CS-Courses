@@ -1,12 +1,15 @@
 # python 2
 
 '''
+Alex Ramsdell
+Coursera Data Structures
+Week 1 Programming Assignment, Problem #2 Compute Tree Height
 
-Michael Levin says:
+Input: first line, N, number of vertices in the tree. Second line, a space-delimited list of integers, L, 
+from L[0] to L[n-1], where the index represents a node, and the value at that index represents the node's parent index.
+If the value at the index is -1, that represents the root node.
 
-If you just build the tree from the input provided and then implement a recursive function 
-to find height almost the same way it was described in the lectures for binary trees, 
-you will solve the problem, and the solution will be fast, O(n).
+Output: tree height
 
 '''
 
