@@ -1,41 +1,37 @@
 # python 2
-
+'''
+Michael Levin - If you just build the tree from the input provided and then implement a recursive function to find height almost the same way it was described in the lectures for binary trees, you will solve the problem, and the solution will be fast, O(n).
 '''
 
-Alex Ramsdell
-Coursera Data Structures
-Week 1, Problem 2: Compute Tree Height
+import sys, threading
+sys.setrecursionlimit(10**7) 
+threading.stack_size(2**27)  
 
-Constraints: N is greater than 1 and less than 10^5.
+def tree_height(n, parent):
 
-Input: first line is number of vertices, N. second line contains n ints from -1 to 1 where each int is a parent of a vertex. 
-If Ni is -1, Ni is the root. Otherwise, it's the index of the root. 
+    maxHeight = 0
+    cache = {}
 
-Output: The height of the tree.
+    for vertex in range(int(n)):
+        if parent[vertex] in cache:
+            height = cache[parent[vertex]]
+        else:
+            height = 0
+            i = vertex
+            while i != -1:
+                height += 1
+                i = parent[i]
+            cache[parent[vertex]] = height
+            maxHeight = max(maxHeight, height);
 
-4 -1 4 1 1
-
-index in array = which node. value = index of the parent.
-
-nodes 0 and 2 are children of 4.
-node 1 is child of null, aka the root.
-node 3 and 4 are child of node 1.
-
-'''
-
-def tree_height():
-    pass
+    return maxHeight;
 
 def main():
-
-    # use the starter file approach but cache i/height values
-    N = raw_input()
-    parents = [ int(n) 
+    _ = raw_input()
+    parent = [ int(n) 
                 for n 
                 in raw_input().split() ]
-    tree = {
-        children: []
-    }
+    n = len(parent)
+    print tree_height(n, parent)
 
-if __name__ == '__main__':
-    main()
+threading.Thread(target=main).start()
