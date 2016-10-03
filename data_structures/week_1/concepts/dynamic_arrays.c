@@ -8,7 +8,7 @@ struct Dynamic_Array {
     int resize_count;
 };
 
-void add(struct Dynamic_Array * array, int value) {
+void push_back(struct Dynamic_Array * array, int value) {
 
     if (array->size >= array->capacity) 
     {
@@ -49,7 +49,7 @@ int main(int argc, const char * argv[]) {
     d.data = malloc(sizeof( sizeof(int) * d.capacity ));
 
     for (int i = 1, max = argc; i < max; ++i) {
-        add(&d, atoi(argv[i]));
+        push_back(&d, atoi(argv[i]));
     }
     show(&d);
 }
