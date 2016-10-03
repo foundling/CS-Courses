@@ -16,7 +16,7 @@ void push_back(struct Dynamic_Array * array, int value) {
         int old_capacity = array->capacity;
 
         array->capacity *= 2;
-        array->data = malloc(sizeof( sizeof(int) * array->capacity ));
+        array->data = malloc(sizeof(int) * array->capacity);
 
         for(int i = 0; i < old_capacity; ++i)
         {
@@ -46,7 +46,7 @@ void show(struct Dynamic_Array * array) {
 int main(int argc, const char * argv[]) {
 
     struct Dynamic_Array d = { 0, 0, 1, 0 };
-    d.data = malloc(sizeof( sizeof(int) * d.capacity ));
+    d.data = malloc(sizeof(int) * d.capacity);
 
     for (int i = 1, max = argc; i < max; ++i) {
         push_back(&d, atoi(argv[i]));
