@@ -35,6 +35,7 @@ void show(struct Dynamic_Array * array) {
         for (int i = 0, max = array->size; i < max; ++i) {
             printf("%d\n", array->data[i]);
         }
+        printf("[ The array was dynamically resized %d times. ]\n", array->resize_count);
     }
     else 
     {
@@ -51,5 +52,4 @@ int main(int argc, const char * argv[]) {
         add(&d, atoi(argv[i]));
     }
     show(&d);
-    printf("[ The array was dynamically resized %d times. ]\n", d.resize_count);
 }
