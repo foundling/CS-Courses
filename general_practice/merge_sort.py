@@ -2,15 +2,16 @@
 
 from utils import run_tests
 
+# Issues:
+# remove list slicing: using list slicing is expensive and works against the nlogn solution.
+
 def merge_sort(data):
 
     if len(data) == 1:
         return data
 
     middle = len(data) / 2
-    l = merge_sort(data[0:middle])
-    r = merge_sort(data[middle:])
-    return merge_lists(l, r)
+    return merge_lists(merge_sort(data[:middle]), merge_sort(data[middle:]))
 
 def merge_lists(l, r):
 
