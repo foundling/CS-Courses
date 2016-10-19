@@ -1,7 +1,5 @@
 #!/usr/bin/env python
 
-# Merge Sort Implementation with configurable and randomized test input
-
 from utils import run_tests
 
 def merge_sort(data):
