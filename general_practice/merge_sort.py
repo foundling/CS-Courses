@@ -35,4 +35,4 @@ def merge_lists(l, r):
     return merged_list
 
 if __name__ == '__main__':
-    run_tests(merge_sort, num_tests=3)
+    run_tests(merge_sort, num_tests=3, min_list_length=2000, max_list_length=20000)
