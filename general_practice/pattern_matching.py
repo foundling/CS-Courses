@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+# -*- coding: utf-8 -*-
 
 '''
 
@@ -27,5 +28,10 @@ def find_match_indexes(pattern, text):
         # or it's not a match. so reset pattern_index 
         else:
             pattern_index = 0
+
+    # check if pattern matches end of text
+    if pattern_index == pattern_length:
+        print text_index, pattern_length
+        match_locations.append(text_index - (pattern_length - 1))  
 
     return match_locations
