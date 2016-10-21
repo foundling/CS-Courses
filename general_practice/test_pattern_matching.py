@@ -3,7 +3,19 @@
 import pytest
 from pattern_matching import find_match_indexes
 
-def test_pattern_matching():
+def test_match_start():
+    text = 'it is great'
+    indexes = find_match_indexes('it',text)
+    assert len(indexes) == 1
 
-    text = 'itit'
-    assert len(find_match_indexes('it',text)) == 2
+
+def test_match_middle():
+    text = 'is it great?'
+    indexes = find_match_indexes('it',text)
+    assert len(indexes) == 1
+
+def test_match_end():
+
+    text = 'is it great?, yes it is'
+    indexes = find_match_indexes('is',text)
+    assert len(indexes) == 2
