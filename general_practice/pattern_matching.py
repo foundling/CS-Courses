@@ -3,7 +3,7 @@
 '''
 
     Find all instances of pattern in text t. 
-    Return index of match for each distinct match, or -1 if none.
+    Return tuple of indexes indicating the location of each distinct match or None if none are found.
 
 '''
 
@@ -11,19 +11,20 @@ def find_match_indexes(pattern, text):
 
     match_locations = []
     pattern_index = 0
+    pattern_length = len(pattern)
 
     for text_index, char in enumerate(text):
 
-        # end of pattern
-        if pattern_index >= len(pattern):
-            match_locations.append(text_index - len(pattern))  
+        # check for end of pattern
+        if pattern_index >= pattern_length:
+            match_locations.append(text_index - pattern_length)  
             pattern_index = 0
 
-        # another matched text character from pattern 
+        # also, check for another matched text character from pattern 
         if char == pattern[pattern_index]:
             pattern_index += 1
 
-        # not a match. continue but make sure pattern_index is back at 0
+        # or it's not a match. so reset pattern_index 
         else:
             pattern_index = 0
 
