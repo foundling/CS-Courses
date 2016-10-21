@@ -27,11 +27,4 @@ def find_match_indexes(pattern, text):
         else:
             pattern_index = 0
 
-    return match_locations 
-
-
-pattern = ' '
-text = 'Every good boy does fine Every day'
-
-print find_match_indexes(pattern, text)
-# should return 0 and 25 
+    return match_locations
