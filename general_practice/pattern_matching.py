@@ -24,7 +24,6 @@ def find_match_indexes(pattern, text):
         # if pattern couldn't possibly exist in remaining 
         # sequence, break.
         if tindex == tlen - plen + 1:
-            print 'stopping at tindex' , tindex
             break
 
         matched = True
@@ -40,7 +39,7 @@ def find_match_indexes(pattern, text):
     return match_indexes
 
 p = 'bar'
-t = 'barbar'
+t = 'a barbar can cut hair at the bar'
 print p
 print t
 print find_match_indexes(p,t)
