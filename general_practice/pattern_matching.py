@@ -3,30 +3,44 @@
 
 '''
 
-    Find all instances of pattern in text t. 
-    Return tuple of indexes indicating the location of each distinct match or None if none are found.
+    Find all indexes where pattern is found in text. 
 
 '''
 
 def find_match_indexes(pattern, text):
 
-    match_locations = []
-    pattern_index, pattern_length = 0, len(pattern)
+    # compare pattern with text, moving along the text index
+    # until you reach index where the pattern could no longer fit
+    # in the text.  this index is (len(text) - len(pattern) - 1)
 
-    for text_index, char in enumerate(text):
+    tlen, plen = len(text), len(pattern)
+    match_indexes = []
 
-        # check for single character match -- should go before checking for full pattern match
-        if pattern_index < pattern_length and char == pattern[pattern_index]:
-            pattern_index += 1
+    if plen > tlen:
+        return -1
 
-        # check for complete match
-        elif pattern_index == pattern_length - 1:
-            match_locations.append(text_index - pattern_index)
-            pattern_index = 0
+    for tindex, tchar in enumerate(text):
 
-        # no match, reset accrued pattern index
-        else:
-            pattern_index = 0
-            
+        # if pattern couldn't possibly exist in remaining 
+        # sequence, break.
+        if tindex == tlen - plen + 1:
+            print 'stopping at tindex' , tindex
+            break
 
-    return match_locations
+        matched = True
+
+        for pindex, pchar in enumerate(pattern):
+            if pchar != text[tindex + pindex]: 
+                matched = False
+                break
+
+        if matched:
+            match_indexes.append(tindex)
+    
+    return match_indexes
+
+p = 'bar'
+t = 'barbar'
+print p
+print t
+print find_match_indexes(p,t)
