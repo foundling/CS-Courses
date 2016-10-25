@@ -33,7 +33,12 @@ def find_match_indexes(pattern, text):
                 pattern_index += 1
 
             else:
-                pattern_index = 0
+                if tchar == pattern[0]:
+                    pattern_index = 1
+                else:
+                    pattern_index = 0
+
+                # need to check if this index, though it doesn't match, is part of the pattern, aka. pattern[0].
 
     # after loop, check for recognized pattern at 'virtual index' 
     if pattern_index == pattern_len:
@@ -42,8 +47,8 @@ def find_match_indexes(pattern, text):
     return match_indexes
 
 p = 'bar'
-t = 'a barbar can cut hair at the bar'
-t = 'barbarbarbar'
+t = 'barbarbbarbar'
+
 print p
 print t
 print find_match_indexes(p,t)
