@@ -9,37 +9,43 @@
 
 def find_match_indexes(pattern, text):
 
-    # compare pattern with text, moving along the text index
-    # until you reach index where the pattern could no longer fit
-    # in the text.  this index is (len(text) - len(pattern) - 1)
-
-    tlen, plen = len(text), len(pattern)
+    pattern_index, pattern_len = 0, len(pattern)
     match_indexes = []
 
-    if plen > tlen:
-        return -1
+    if pattern_len > len(text):
+        raise ValueError('The pattern must be equal or shorter in length than the text')
 
     for tindex, tchar in enumerate(text):
 
-        # if pattern couldn't possibly exist in remaining 
-        # sequence, break.
-        if tindex == tlen - plen + 1:
-            break
+        if pattern_index == pattern_len:
 
-        matched = True
+            match_indexes.append(tindex - pattern_len)
 
-        for pindex, pchar in enumerate(pattern):
-            if pchar != text[tindex + pindex]: 
-                matched = False
-                break
+            if tchar == pattern[0]:
+                pattern_index = 1
 
-        if matched:
-            match_indexes.append(tindex)
-    
+            else:
+                pattern_index = 0
+
+        else:
+
+            if tchar == pattern[pattern_index]:
+                pattern_index += 1
+
+            else:
+                if tchar == pattern[0]:
+                    pattern_index = 1
+
+                else:
+                    pattern_index = 0
+
+    if pattern_index == pattern_len:
+        match_indexes.append(tindex + 1 - pattern_len)  
+
     return match_indexes
 
 p = 'bar'
-t = 'a barbar can cut hair at the bar'
-print p
-print t
-print find_match_indexes(p,t)
+t = 'barbarbbarbar'
+
+print("matching for {} in {}".format(p,t))
+print(find_match_indexes(p,t))

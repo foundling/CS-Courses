@@ -9,21 +9,21 @@
 
 def find_match_indexes(pattern, text):
 
-    pattern_index = 0
-    pattern_len = len(pattern)
+    pattern_index, pattern_len = 0, len(pattern)
     match_indexes = []
 
-    # two essential concerns: finding a match, updating pattern index
+    if pattern_len > len(text):
+        raise ValueError('The pattern must be equal or shorter in length than the text')
 
     for tindex, tchar in enumerate(text):
 
-        # recognize a match
         if pattern_index == pattern_len:
 
             match_indexes.append(tindex - pattern_len)
 
             if tchar == pattern[0]:
                 pattern_index = 1
+
             else:
                 pattern_index = 0
 
@@ -35,12 +35,10 @@ def find_match_indexes(pattern, text):
             else:
                 if tchar == pattern[0]:
                     pattern_index = 1
+
                 else:
                     pattern_index = 0
 
-                # need to check if this index, though it doesn't match, is part of the pattern, aka. pattern[0].
-
-    # after loop, check for recognized pattern at 'virtual index' 
     if pattern_index == pattern_len:
         match_indexes.append(tindex + 1 - pattern_len)  
 
@@ -49,6 +47,5 @@ def find_match_indexes(pattern, text):
 p = 'bar'
 t = 'barbarbbarbar'
 
-print p
-print t
-print find_match_indexes(p,t)
+print("matching for {} in {}".format(p,t))
+print(find_match_indexes(p,t))
